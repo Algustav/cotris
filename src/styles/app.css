@@ -1016,11 +1016,11 @@ button:active {
     order: 1;
   }
 
-  body.mobile-layout-on .actions #pauseButton {
+  body.mobile-layout-on .actions button[data-open-view="settings"] {
     order: 2;
   }
 
-  body.mobile-layout-on .actions button[data-open-view="help"] {
+  body.mobile-layout-on .actions #pauseButton {
     order: 3;
   }
 

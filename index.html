@@ -8,7 +8,7 @@
   <link rel="icon" href="./assets/icons/cotris-icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="./site.webmanifest">
-  <link rel="stylesheet" href="./src/styles/app.css?v=2.1-mobile-9">
+  <link rel="stylesheet" href="./src/styles/app.css?v=2.1-mobile-11">
 </head>
 <body>
   <main class="shell">
@@ -96,7 +96,7 @@
                 </span>
                 <input id="soundToggle" type="checkbox">
               </label>
-              <label class="setting-row">
+              <label class="setting-row" hidden>
                 <span>
                   <strong>背景音乐</strong>
                   <small>开始游戏后播放，暂停时自动降低音量</small>
@@ -193,7 +193,7 @@
         <button class="secondary" data-open-view="menu" type="button">开始</button>
         <button class="danger" type="button" id="resetButton">重开</button>
         <button class="secondary" type="button" id="pauseButton">暂停</button>
-        <button class="secondary" data-open-view="help" type="button">说明</button>
+        <button class="secondary" data-open-view="settings" type="button">风格</button>
       </section>
 
       <nav class="dev-links" aria-label="开发入口">
@@ -233,6 +233,6 @@
     </aside>
   </main>
 
-  <script type="module" src="./src/main.js?v=2.1-mobile-9"></script>
+  <script type="module" src="./src/main.js?v=2.1-mobile-11"></script>
 </body>
 </html>
