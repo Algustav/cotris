@@ -140,11 +140,35 @@ export class CanvasRenderer {
 
   drawPreviewPiece(ctx, canvas, piece, size, alpha = 1) {
     const offsetYBase = canvas.offsetY || 0;
-    const width = piece.shape[0].length * size;
-    const height = piece.shape.length * size;
-    const offsetX = Math.floor((canvas.width - width) / 2);
-    const offsetY = Math.floor(offsetYBase + (canvas.height - height) / 2);
+    const bounds = this.getShapeBounds(piece.shape);
+    const width = bounds.width * size;
+    const height = bounds.height * size;
+    const offsetX = Math.floor((canvas.width - width) / 2) - bounds.minX * size;
+    const offsetY = Math.floor(offsetYBase + (canvas.height - height) / 2) - bounds.minY * size;
     this.drawPiecePixels(ctx, piece, offsetX, offsetY, size, alpha);
+  }
+
+  getShapeBounds(shape) {
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -1;
+    let maxY = -1;
+    shape.forEach((row, y) => {
+      row.forEach((cell, x) => {
+        if (!cell) return;
+        minX = Math.min(minX, x);
+        minY = Math.min(minY, y);
+        maxX = Math.max(maxX, x);
+        maxY = Math.max(maxY, y);
+      });
+    });
+    if (maxX < 0) return { minX: 0, minY: 0, width: 0, height: 0 };
+    return {
+      minX,
+      minY,
+      width: maxX - minX + 1,
+      height: maxY - minY + 1
+    };
   }
 
   drawPiecePixels(ctx, piece, offsetX, offsetY, size, alpha = 1) {

@@ -223,6 +223,7 @@ canvas {
 .side {
   display: grid;
   gap: 14px;
+  align-content: start;
 }
 
 .title {
@@ -679,17 +680,6 @@ button:active {
   min-height: 88px;
 }
 
-.layout-switch {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 14px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-}
-
 .switch {
   display: inline-flex;
   align-items: center;
@@ -823,11 +813,6 @@ button:active {
 
   .next-list {
     grid-template-columns: repeat(auto-fit, minmax(52px, 52px));
-  }
-
-  .layout-switch {
-    width: min(100%, calc(100vw - 28px));
-    margin-top: 10px;
   }
 
   body.mobile-layout-on .shell {

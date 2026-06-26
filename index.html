@@ -8,7 +8,7 @@
   <link rel="icon" href="./assets/icons/cotris-icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="./site.webmanifest">
-  <link rel="stylesheet" href="./src/styles/app.css?v=2.1-mobile-6">
+  <link rel="stylesheet" href="./src/styles/app.css?v=2.1-mobile-9">
 </head>
 <body>
   <main class="shell">
@@ -77,12 +77,19 @@
               </label>
               <label class="setting-row">
                 <span>
+                  <strong>移动布局</strong>
+                  <small>窄屏时使用更紧凑的操作界面</small>
+                </span>
+                <input id="mobileLayoutToggle" type="checkbox">
+              </label>
+              <label class="setting-row" hidden>
+                <span>
                   <strong>幽灵落点</strong>
                   <small>显示当前方块将落到的位置</small>
                 </span>
                 <input id="ghostToggle" type="checkbox">
               </label>
-              <label class="setting-row">
+              <label class="setting-row" hidden>
                 <span>
                   <strong>音效</strong>
                   <small>播放移动、旋转、落地、消除和菜单反馈</small>
@@ -117,7 +124,8 @@
             <h1>操作说明</h1>
             <div class="help-list">
               <div><span class="key">←</span><span class="key">→</span>左右移动</div>
-              <div><span class="key">↑</span>旋转</div>
+              <div><span class="key">↑</span><span class="key">X</span>右旋</div>
+              <div><span class="key">Z</span>左旋</div>
               <div><span class="key">C</span>暂存当前方块</div>
               <div><span class="key">↓</span>软降</div>
               <div><span class="key">Space</span>硬降</div>
@@ -225,15 +233,6 @@
     </aside>
   </main>
 
-  <div class="layout-switch" aria-label="布局切换">
-    <span>常规布局</span>
-    <label class="switch">
-      <input id="mobileLayoutToggle" type="checkbox">
-      <span></span>
-    </label>
-    <span>紧凑布局</span>
-  </div>
-
-  <script type="module" src="./src/main.js?v=2.1-mobile-6"></script>
+  <script type="module" src="./src/main.js?v=2.1-mobile-9"></script>
 </body>
 </html>

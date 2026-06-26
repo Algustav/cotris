@@ -72,6 +72,7 @@ const menu = new MenuController(elements, { onShow: view => {
 } });
 const THEME_STORAGE_KEY = "tetris-theme";
 const RANDOM_THEME_STORAGE_KEY = "tetris-random-theme";
+const RANDOM_THEME_DEFAULT_FIX_KEY = "tetris-random-theme-defaulted";
 const SOUND_STORAGE_KEY = "tetris-sound-enabled";
 const MUSIC_STORAGE_KEY = "tetris-music-enabled";
 const MUSIC_VOLUME_STORAGE_KEY = "tetris-music-volume";
@@ -86,6 +87,10 @@ let lastTime = 0;
 let activeTheme = getTheme(requestedTheme || localStorage.getItem(THEME_STORAGE_KEY) || defaultTheme.id);
 let lastRecordedGameOverScore = null;
 let effectPauseCounter = 0;
+if (localStorage.getItem(RANDOM_THEME_DEFAULT_FIX_KEY) !== "true") {
+  localStorage.setItem(RANDOM_THEME_STORAGE_KEY, "true");
+  localStorage.setItem(RANDOM_THEME_DEFAULT_FIX_KEY, "true");
+}
 const hasChosenMobileLayout = localStorage.getItem(MOBILE_LAYOUT_CHOSEN_KEY) === "true";
 let mobileLayoutEnabled = hasChosenMobileLayout
   ? localStorage.getItem(MOBILE_LAYOUT_STORAGE_KEY) === "true"
@@ -136,12 +141,11 @@ function updateMobileBoardScale() {
     : 364;
   const touchHeight = elements.touchControls?.offsetHeight || 0;
   const headerHeight = mobileLayoutEnabled ? (document.querySelector(".side header")?.offsetHeight || 0) : 0;
-  const layoutSwitchHeight = mobileLayoutEnabled ? (document.querySelector(".layout-switch")?.offsetHeight || 0) : 0;
   const previewWidth = mobileLayoutEnabled ? 128 : 0;
   const verticalPadding = 28;
   const stageGap = mobileLayoutEnabled ? 34 : 10;
   const breathingRoom = 8;
-  const availableHeight = viewportHeight - headerHeight - touchHeight - layoutSwitchHeight - verticalPadding - stageGap - breathingRoom;
+  const availableHeight = viewportHeight - headerHeight - touchHeight - verticalPadding - stageGap - breathingRoom;
   const availableWidth = viewportWidth - 28 - previewWidth;
   const heightScale = availableHeight / boardHeight;
   const widthScale = availableWidth / boardWidth;
