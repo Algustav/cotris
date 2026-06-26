@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cotris</title>
+  <link rel="icon" href="./assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" href="./assets/icons/cotris-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="stylesheet" href="./src/styles/app.css?v=2.1-mobile-6">
+</head>
+<body>
+  <main class="shell">
+    <section class="stage" aria-label="Cotris 游戏区域">
+      <div class="board-scale-box">
+        <div class="board-scale-content">
+        <div class="board-wrap">
+        <canvas id="board" width="340" height="680" aria-label="Cotris 棋盘"></canvas>
+        <div class="overlay show" id="overlay">
+          <div class="overlay-panel active" data-view="menu">
+            <h1 class="menu-title">Cotris</h1>
+            <p>与 Codex 协力完成的方块游戏</p>
+            <div class="mode-picker">
+              <label class="label" for="modeSelect">Mode</label>
+              <select id="modeSelect" aria-label="选择游戏模式"></select>
+              <small id="modeDescription"></small>
+            </div>
+            <div class="overlay-actions">
+              <button id="menuStartButton" type="button">开始游戏</button>
+              <button class="secondary" data-open-view="settings" type="button">风格设置</button>
+              <button class="secondary" data-open-view="help" type="button">操作说明</button>
+              <button class="secondary" data-open-view="scores" type="button">排行榜</button>
+            </div>
+          </div>
+
+          <div class="overlay-panel" data-view="pause">
+            <h1>暂停</h1>
+            <p>当前进度已保留</p>
+            <div class="overlay-actions">
+              <button id="resumeButton" type="button">继续</button>
+              <button class="secondary" id="pauseRestartButton" type="button">重开</button>
+              <button class="secondary" data-open-view="settings" type="button">风格设置</button>
+              <button class="secondary" data-open-view="help" type="button">操作说明</button>
+              <button class="secondary" data-open-view="menu" type="button">主菜单</button>
+            </div>
+          </div>
+
+          <div class="overlay-panel" data-view="gameOver">
+            <h1>游戏结束</h1>
+            <p id="finalScoreText">最终分数：0</p>
+            <div class="overlay-actions">
+              <button id="playAgainButton" type="button">再玩一次</button>
+              <button class="secondary" data-open-view="scores" type="button">排行榜</button>
+              <button class="secondary" data-open-view="settings" type="button">风格设置</button>
+              <button class="secondary" data-open-view="menu" type="button">主菜单</button>
+            </div>
+          </div>
+
+          <div class="overlay-panel" data-view="settings">
+            <h1>风格设置</h1>
+            <div class="settings-block">
+              <div class="theme-head">
+                <div>
+                  <span class="label">Theme</span>
+                </div>
+                <select id="themeSelect" aria-label="选择界面皮肤"></select>
+              </div>
+              <p class="theme-description" id="themeDescription"></p>
+              <div class="swatches" id="themeSwatches" aria-label="当前方块配色"></div>
+              <label class="setting-row">
+                <span>
+                  <strong>随机风格</strong>
+                  <small>每消除 10 行后切换</small>
+                </span>
+                <input id="randomThemeToggle" type="checkbox">
+              </label>
+              <label class="setting-row">
+                <span>
+                  <strong>幽灵落点</strong>
+                  <small>显示当前方块将落到的位置</small>
+                </span>
+                <input id="ghostToggle" type="checkbox">
+              </label>
+              <label class="setting-row">
+                <span>
+                  <strong>音效</strong>
+                  <small>播放移动、旋转、落地、消除和菜单反馈</small>
+                </span>
+                <input id="soundToggle" type="checkbox">
+              </label>
+              <label class="setting-row">
+                <span>
+                  <strong>背景音乐</strong>
+                  <small>开始游戏后播放，暂停时自动降低音量</small>
+                </span>
+                <input id="musicToggle" type="checkbox">
+              </label>
+              <div class="setting-row range-setting">
+                <span>
+                  <strong>音乐音量</strong>
+                  <small><output id="musicVolumeValue" for="musicVolume">15%</output></small>
+                </span>
+                <input id="musicVolume" type="range" min="0" max="100" step="1" aria-label="音乐音量">
+              </div>
+            </div>
+            <button class="secondary" data-back type="button">返回</button>
+          </div>
+
+          <div class="overlay-panel" data-view="scores">
+            <h1>排行榜</h1>
+            <ol class="score-list" id="scoreList"></ol>
+            <button class="secondary" data-back type="button">返回</button>
+          </div>
+
+          <div class="overlay-panel" data-view="help">
+            <h1>操作说明</h1>
+            <div class="help-list">
+              <div><span class="key">←</span><span class="key">→</span>左右移动</div>
+              <div><span class="key">↑</span>旋转</div>
+              <div><span class="key">C</span>暂存当前方块</div>
+              <div><span class="key">↓</span>软降</div>
+              <div><span class="key">Space</span>硬降</div>
+              <div><span class="key">P</span>暂停 / 继续</div>
+            </div>
+            <button class="secondary" data-back type="button">返回</button>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+      <div class="touch" aria-label="触屏控制">
+        <div class="touch-pad touch-move" aria-label="移动">
+          <button class="touch-up" type="button" data-action="drop" aria-label="硬降">↑</button>
+          <button class="touch-left" type="button" data-action="left" aria-label="左移">←</button>
+          <button class="touch-down" type="button" data-action="down" aria-label="软降">↓</button>
+          <button class="touch-right" type="button" data-action="right" aria-label="右移">→</button>
+        </div>
+        <button class="touch-hold" type="button" data-action="hold" aria-label="暂存">H</button>
+        <div class="touch-pad touch-rotate" aria-label="旋转">
+          <button type="button" data-action="rotateLeft" aria-label="左旋">↺</button>
+          <button type="button" data-action="rotate" aria-label="右旋">↻</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <header>
+        <h1 class="title">Cotris</h1>
+        <button class="mobile-actions-toggle" type="button" aria-label="打开游戏菜单" aria-expanded="false">☰</button>
+        <p class="subtitle">与 Codex 协力完成的方块游戏</p>
+      </header>
+
+      <section class="panel stats" aria-label="游戏数据">
+        <div class="stat">
+          <span class="label">Score</span>
+          <strong class="value" id="score">0</strong>
+        </div>
+        <div class="stat">
+          <span class="label">Lines</span>
+          <strong class="value" id="lines">0</strong>
+        </div>
+        <div class="stat">
+          <span class="label">Level</span>
+          <strong class="value" id="level">1</strong>
+        </div>
+        <div class="stat">
+          <span class="label">Speed</span>
+          <strong class="value" id="speed">1.00x</strong>
+        </div>
+      </section>
+
+      <section class="panel previews" aria-label="暂存和后续方块">
+        <div class="preview-block">
+          <span class="label">Hold</span>
+          <canvas id="hold" width="104" height="104"></canvas>
+        </div>
+        <div class="preview-block">
+          <span class="label">Next 4</span>
+          <div class="next-list" id="nextList" aria-label="后续五个方块"></div>
+        </div>
+      </section>
+
+      <section class="actions">
+        <button class="secondary" data-open-view="menu" type="button">开始</button>
+        <button class="danger" type="button" id="resetButton">重开</button>
+        <button class="secondary" type="button" id="pauseButton">暂停</button>
+        <button class="secondary" data-open-view="help" type="button">说明</button>
+      </section>
+
+      <nav class="dev-links" aria-label="开发入口">
+        <span>Dev</span>
+        <a href="./theme-preview.html">Theme Preview</a>
+        <a href="./todo.html">Todo</a>
+        <a href="./about.html">About</a>
+      </nav>
+      <section class="panel effect-tests" aria-label="Effect tests">
+        <span class="label">Effect Test</span>
+        <div class="effect-test-grid">
+          <button type="button" data-effect-test="wall">wall</button>
+          <button type="button" data-effect-test="drop">drop</button>
+          <button type="button" data-effect-test="clear">clear</button>
+          <button type="button" data-effect-test="tetris">4-line</button>
+          <button type="button" data-effect-test="hold">hold</button>
+          <button type="button" data-effect-test="level">level</button>
+          <button type="button" data-effect-test="theme">theme</button>
+          <button type="button" data-effect-test="start">start</button>
+          <button type="button" data-effect-test="over">over</button>
+        </div>
+        <span class="label">T-Spin Test</span>
+        <div class="effect-test-grid">
+          <button type="button" data-tspin-test="tDouble">T Double</button>
+          <button type="button" data-tspin-test="tTriple">T Triple</button>
+          <button type="button" data-tspin-test="clear">Clear</button>
+        </div>
+      </section>
+      <section class="panel dev-panel" aria-label="Dev links">
+        <nav class="dev-links">
+          <span>Dev</span>
+          <a href="./theme-preview.html">Theme Preview</a>
+          <a href="./todo.html">Todo</a>
+          <a href="./about.html">About</a>
+        </nav>
+      </section>
+    </aside>
+  </main>
+
+  <div class="layout-switch" aria-label="布局切换">
+    <span>常规布局</span>
+    <label class="switch">
+      <input id="mobileLayoutToggle" type="checkbox">
+      <span></span>
+    </label>
+    <span>紧凑布局</span>
+  </div>
+
+  <script type="module" src="./src/main.js?v=2.1-mobile-6"></script>
+</body>
+</html>

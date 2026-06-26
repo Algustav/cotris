@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cotris Theme Preview</title>
+  <link rel="icon" href="./assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" href="./assets/icons/cotris-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600;700&family=JetBrains+Mono:wght@700;800&family=Orbitron:wght@700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "VT323";
+      src: url("./assets/fonts/VT323-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "VT323";
+      src: url("./assets/fonts/VT323-Regular.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 28px;
+      color: var(--text, #eef2f7);
+      background:
+        linear-gradient(90deg, var(--grid-a, rgba(255,255,255,.035)) 1px, transparent 1px) 0 0 / 34px 34px,
+        linear-gradient(var(--grid-b, rgba(255,255,255,.03)) 1px, transparent 1px) 0 0 / 34px 34px,
+        radial-gradient(circle at 16% 12%, var(--glow-a, rgba(78, 201, 176, .16)), transparent 28%),
+        var(--bg, #111318);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+
+    header {
+      max-width: 1280px;
+      margin: 0 auto 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 52px);
+      letter-spacing: 0;
+      line-height: .96;
+    }
+
+    .intro {
+      margin: 8px 0 0;
+      color: var(--muted, #aab6c8);
+      line-height: 1.5;
+    }
+
+    .back-link {
+      width: fit-content;
+      min-height: 38px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0 14px;
+      border-radius: 6px;
+      color: #07120f;
+      background: var(--accent, #9cdcfe);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      filter: brightness(1.08);
+    }
+
+    .page-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .section-title {
+      max-width: 1280px;
+      margin: 28px auto 12px;
+      color: var(--accent, #9cdcfe);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .font-grid,
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .font-card,
+    .card {
+      border: 1px solid var(--line, #344058);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg, #171c2c);
+      box-shadow: 0 16px 36px rgba(0,0,0,.25);
+    }
+
+    .font-card {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      background: var(--panel, #1b1f29);
+      border-color: var(--line, #303744);
+    }
+
+    .font-name {
+      color: var(--accent, #9cdcfe);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .font-sample {
+      margin: 0;
+      color: var(--text, #f2f6ff);
+      font-size: clamp(34px, 8vw, 58px);
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: .95;
+    }
+
+    .font-note {
+      min-height: 34px;
+      margin: 0;
+      color: var(--muted, #aab6c8);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .theme-head {
+      padding: 14px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .theme-name {
+      margin: 0;
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .theme-desc {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .mock {
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 12px;
+      padding: 14px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 24px 24px,
+        var(--bg);
+    }
+
+    .board {
+      height: 164px;
+      border: 2px solid var(--line);
+      border-radius: 6px;
+      background: var(--board);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+    }
+
+    .mini-piece {
+      display: grid;
+      grid-template-columns: repeat(4, 15px);
+      grid-template-rows: repeat(4, 15px);
+      gap: 2px;
+    }
+
+    .cell {
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      background: var(--accent);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), inset 0 -4px rgba(0,0,0,.18);
+    }
+
+    .panel {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .swatch {
+      min-height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 5px;
+      color: rgba(0,0,0,.72);
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.24), inset 0 -7px rgba(0,0,0,.14);
+    }
+
+    .ui-colors {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      min-height: 32px;
+      border-radius: 5px;
+      border: 1px solid rgba(255,255,255,.16);
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 18px; }
+      .mock { grid-template-columns: 1fr; }
+      .board { height: 128px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cotris Preview</h1>
+    <nav class="page-links" aria-label="Preview links">
+      <a class="back-link" href="./index.html">返回游戏</a>
+      <a class="back-link" href="./about.html">About</a>
+      <a class="back-link" href="./todo.html">Todo</a>
+    </nav>
+    <p class="intro">标题字体候选和完整主题预览。主题顺序与游戏里的风格下拉选单一致。</p>
+  </header>
+
+  <h2 class="section-title">Title Font Candidates</h2>
+  <section class="font-grid" id="fontGrid" aria-label="标题字体候选"></section>
+
+  <h2 class="section-title">Theme Order</h2>
+  <main class="theme-grid" id="themeGrid" aria-label="完整主题预览"></main>
+
+  <script type="module">
+    import "./src/ui/page-theme.js";
+    import { listThemes } from "./src/ui/theme.js";
+
+    const fontCandidates = [
+      {
+        name: "JetBrains Mono",
+        stack: '"JetBrains Mono", "Cascadia Code", Consolas, monospace',
+        note: "最贴近代码编辑器气质，现代、清晰，适合默认选择。"
+      },
+      {
+        name: "IBM Plex Mono",
+        stack: '"IBM Plex Mono", "Lucida Console", "Courier New", monospace',
+        note: "更克制专业，编辑器感强，但游戏标题感略弱。"
+      },
+      {
+        name: "Orbitron",
+        stack: '"Orbitron", "Agency FB", Bahnschrift, sans-serif',
+        note: "科技游戏感更强，视觉记忆点明显。"
+      },
+      {
+        name: "VT323",
+        stack: '"VT323", "OCR A Extended", "Courier New", monospace',
+        note: "终端和街机感明显，轻松复古。"
+      },
+      {
+        name: "Press Start 2P",
+        stack: '"Press Start 2P", "OCR A Extended", "Lucida Console", monospace',
+        note: "经典像素游戏味最重，但字号和可读性更挑剔。"
+      }
+    ];
+
+    const fontGrid = document.querySelector("#fontGrid");
+    const themeGrid = document.querySelector("#themeGrid");
+    const pieceOrder = ["I", "O", "T", "S", "Z", "J", "L"];
+    const samplePiece = [
+      [0, 1, 1, 0],
+      [1, 1, 0, 0],
+      [0, 1, 0, 0],
+      [0, 0, 0, 0]
+    ];
+
+    fontCandidates.forEach(candidate => {
+      const card = document.createElement("article");
+      card.className = "font-card";
+      const name = document.createElement("span");
+      name.className = "font-name";
+      name.textContent = candidate.name;
+      const sample = document.createElement("p");
+      sample.className = "font-sample";
+      sample.style.fontFamily = candidate.stack;
+      sample.textContent = "COTRIS";
+      const note = document.createElement("p");
+      note.className = "font-note";
+      note.textContent = candidate.note;
+      card.append(name, sample, note);
+      fontGrid.append(card);
+    });
+
+    listThemes().forEach(theme => {
+      const card = document.createElement("section");
+      card.className = "card";
+      Object.entries({
+        "--bg": theme.css["--bg"],
+        "--panel": theme.css["--panel"],
+        "--line": theme.css["--line"],
+        "--text": theme.css["--text"],
+        "--muted": theme.css["--muted"],
+        "--accent": theme.css["--accent"],
+        "--board": theme.boardBackground
+      }).forEach(([name, value]) => card.style.setProperty(name, value));
+
+      const swatches = pieceOrder.map(type => (
+        `<b class="swatch" style="background:${theme.colors[type]}">${type}</b>`
+      )).join("");
+
+      const chips = [
+        theme.css["--bg"],
+        theme.css["--panel"],
+        theme.css["--text"],
+        theme.css["--accent"]
+      ].map(color => `<i class="chip" style="background:${color}"></i>`).join("");
+
+      const cells = samplePiece.flatMap(row => (
+        row.map(cell => cell ? `<span class="cell"></span>` : `<span></span>`)
+      )).join("");
+
+      card.innerHTML = `
+        <div class="theme-head">
+          <h3 class="theme-name">${theme.name}</h3>
+          <p class="theme-desc">${theme.description}</p>
+        </div>
+        <div class="mock">
+          <div class="board">
+            <div class="mini-piece" style="--accent:${theme.colors.S}">${cells}</div>
+          </div>
+          <div class="panel">
+            <span class="label">Pieces</span>
+            <div class="swatches">${swatches}</div>
+            <div class="ui-colors">${chips}</div>
+          </div>
+        </div>
+      `;
+      themeGrid.append(card);
+    });
+  </script>
+</body>
+</html>

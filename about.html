@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Cotris</title>
+  <link rel="icon" href="./assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" href="./assets/icons/cotris-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <style>
+    @font-face {
+      font-family: "VT323";
+      src: url("./assets/fonts/VT323-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "VT323";
+      src: url("./assets/fonts/VT323-Regular.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 28px;
+      color: var(--text, #e6edf3);
+      background:
+        linear-gradient(90deg, var(--grid-a, rgba(255,255,255,.035)) 1px, transparent 1px) 0 0 / 34px 34px,
+        linear-gradient(var(--grid-b, rgba(255,255,255,.03)) 1px, transparent 1px) 0 0 / 34px 34px,
+        radial-gradient(circle at 18% 14%, var(--glow-a, rgba(47, 129, 247, .18)), transparent 30%),
+        radial-gradient(circle at 86% 76%, var(--glow-b, rgba(210, 153, 34, .13)), transparent 26%),
+        var(--bg, #0d1117);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(100%, 820px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    header {
+      display: grid;
+      gap: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "VT323", "OCR A Extended", "Courier New", monospace;
+      font-size: clamp(64px, 16vw, 112px);
+      line-height: .82;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted, #a8b3c9);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    a {
+      min-height: 40px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0 14px;
+      border-radius: 6px;
+      color: #07120f;
+      background: var(--accent, #58a6ff);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    a.secondary {
+      color: var(--text, #e6edf3);
+      background: var(--touch-bg, #21262d);
+    }
+
+    a:hover {
+      filter: brightness(1.08);
+    }
+
+    .panel {
+      border: 1px solid var(--line, #30363d);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)), var(--panel, #161b22);
+      box-shadow: 0 16px 36px var(--shadow, rgba(1, 4, 9, .24));
+      padding: 18px;
+    }
+
+    .facts {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .facts li {
+      display: grid;
+      gap: 5px;
+      padding: 12px 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--line, #30363d), transparent 35%);
+      line-height: 1.55;
+    }
+
+    .facts li:last-child {
+      border-bottom: 0;
+    }
+
+    .label {
+      color: var(--accent, #58a6ff);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    strong {
+      color: var(--text, #f2f6ff);
+    }
+
+    @media (max-width: 620px) {
+      body { padding: 18px; }
+      .panel { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Cotris</h1>
+      <p class="lead">
+        与 Codex 协力完成的俄罗斯方块游戏。
+      </p>
+      <nav class="links" aria-label="页面导航">
+        <a href="./index.html">返回游戏</a>
+        <a class="secondary" href="./theme-preview.html">主题预览</a>
+        <a class="secondary" href="./todo.html">Todo</a>
+      </nav>
+    </header>
+
+    <section class="panel" aria-label="About Cotris">
+      <ul class="facts">
+        <li>
+          <span class="label">Project</span>
+          <span><strong>COTRIS</strong> 是一个人工 0 代码的个人项目，也是我的第一个完整 vibecoding 作品，总投入 4 天，每天 2 小时；主框架半小时搭好，剩下时间几乎都在功能调优、美化和抓 bug。</span>
+        </li>
+        <li>
+          <span class="label">Name</span>
+          <span><strong>CO</strong> 来自 coding + cooperation，再加上 teTRIS。它是我与 Codex 协作的第一个个人游戏作品。</span>
+        </li>
+        <li>
+          <span class="label">Modes</span>
+          <span>游戏包含 3 种模式：经典马拉松、不会结束的放松禅境，以及方块不会下坠的练习模式。</span>
+        </li>
+        <li>
+          <span class="label">Themes</span>
+          <span>当前有 10 个模板，7 个深色、3 个浅色，灵感来自 IDE 的经典配色。</span>
+        </li>
+        <li>
+          <span class="label">Device</span>
+          <span>移动端能玩，但更推荐 PC 或平板。</span>
+        </li>
+        <li>
+          <span class="label">Effects</span>
+          <span>游戏里做了一些不错的视觉特效，让移动、落地、消行和切换主题更有反馈。</span>
+        </li>
+        <li>
+          <span class="label">Audio</span>
+          <span>效果音来自 Apotris，背景音乐来自 Suno 生成曲。</span>
+        </li>
+        <li>
+          <span class="label">Release</span>
+          <span>当前 release 1.6，暂不支持 T-spin / T 旋，因为自己还没玩明白 :)</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <script type="module" src="./src/ui/page-theme.js"></script>
+</body>
+</html>

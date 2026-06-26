@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cotris icon">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161b22"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <path d="M17 8h30a9 9 0 0 1 9 9v30a9 9 0 0 1-9 9H17a9 9 0 0 1-9-9V17a9 9 0 0 1 9-9Z" fill="none" stroke="#30363d" stroke-width="2"/>
+  <g filter="url(#glow)">
+    <rect x="16" y="14" width="10" height="10" rx="2" fill="#58a6ff"/>
+    <rect x="28" y="14" width="10" height="10" rx="2" fill="#f2cc60"/>
+    <rect x="40" y="14" width="10" height="10" rx="2" fill="#d2a8ff"/>
+    <rect x="16" y="26" width="10" height="10" rx="2" fill="#7ee787"/>
+    <rect x="16" y="38" width="10" height="10" rx="2" fill="#ff7b72"/>
+    <rect x="28" y="38" width="10" height="10" rx="2" fill="#79c0ff"/>
+    <rect x="40" y="38" width="10" height="10" rx="2" fill="#ffa657"/>
+  </g>
+  <g opacity=".3">
+    <path d="M18 16h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M30 16h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M42 16h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+  <path d="M46 27h4v4h-4z" fill="#2f81f7" opacity=".8"/>
+</svg>

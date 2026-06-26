@@ -1,0 +1,35 @@
+{
+  "defaultOrder": "shuffle",
+  "modes": {
+    "marathon": {
+      "order": "shuffle",
+      "tracks": [
+        "01.ogg",
+        "02.ogg",
+        "03.ogg",
+        "04.ogg"
+      ]
+    },
+    "zen": {
+      "order": "shuffle",
+      "tracks": [
+        "01.ogg",
+        "02.ogg",
+        "03.ogg",
+        "04.ogg"
+      ]
+    },
+    "practice": {
+      "order": "shuffle",
+      "tracks": [
+        "01.ogg",
+        "02.ogg",
+        "03.ogg"
+      ]
+    },
+    "shared": {
+      "order": "shuffle",
+      "tracks": []
+    }
+  }
+}
