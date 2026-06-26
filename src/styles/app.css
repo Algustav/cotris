@@ -612,7 +612,7 @@ button:active {
 
 .touch-move {
   display: grid;
-  grid-template-columns: repeat(3, 42px);
+  grid-template-columns: 48px 64px 48px;
   grid-template-rows: repeat(2, 42px);
   gap: 6px;
   place-content: center;
@@ -628,7 +628,7 @@ button:active {
 }
 
 .touch-move button {
-  width: 42px;
+  width: 100%;
   height: 100%;
   min-height: 42px;
 }
@@ -856,8 +856,8 @@ button:active {
   }
 
   body.mobile-layout-on .title {
-    font-size: 30px;
-    line-height: 1;
+    font-size: clamp(54px, 11vw, 86px);
+    line-height: .82;
     padding-top: 0;
   }
 
@@ -990,6 +990,10 @@ button:active {
     font-size: 22px;
     line-height: 1;
     box-shadow: inset 0 -6px 0 rgba(0,0,0,.08);
+  }
+
+  body.mobile-layout-on .touch button {
+    font-weight: 900;
   }
 
   body.mobile-layout-on .actions {
