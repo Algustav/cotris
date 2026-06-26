@@ -143,7 +143,7 @@ function updateMobileBoardScale() {
   const headerHeight = mobileLayoutEnabled ? (document.querySelector(".side header")?.offsetHeight || 0) : 0;
   const previewWidth = mobileLayoutEnabled ? 128 : 0;
   const verticalPadding = 28;
-  const stageGap = mobileLayoutEnabled ? 34 : 10;
+  const stageGap = mobileLayoutEnabled ? 48 : 10;
   const breathingRoom = 8;
   const availableHeight = viewportHeight - headerHeight - touchHeight - verticalPadding - stageGap - breathingRoom;
   const availableWidth = viewportWidth - 28 - previewWidth;

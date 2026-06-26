@@ -629,7 +629,7 @@ button:active {
 
 .touch-move button {
   width: 42px;
-  height: 42px;
+  height: 100%;
   min-height: 42px;
 }
 
@@ -640,7 +640,7 @@ button:active {
 
 .touch-left {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 1 / span 2;
 }
 
 .touch-down {
@@ -650,7 +650,13 @@ button:active {
 
 .touch-right {
   grid-column: 3;
-  grid-row: 2;
+  grid-row: 1 / span 2;
+}
+
+.touch-left,
+.touch-right {
+  height: 100%;
+  min-height: 100%;
 }
 
 .touch-up {
@@ -817,9 +823,11 @@ button:active {
 
   body.mobile-layout-on .shell {
     width: min(100%, calc(100vw - 28px));
+    min-height: calc(100svh - 28px);
     grid-template-columns: auto calc(var(--board-outer-width) * var(--board-scale)) auto;
     grid-template-rows: auto auto auto auto;
-    gap: 8px;
+    gap: 12px 8px;
+    align-content: center;
     justify-content: center;
     align-items: start;
   }
@@ -875,18 +883,19 @@ button:active {
   body.mobile-layout-on .stats {
     grid-column: 1;
     grid-row: 2;
-    align-self: start;
+    align-self: center;
     justify-self: stretch;
     display: grid;
     grid-template-columns: 1fr;
     width: 56px;
-    margin-top: 76px;
+    margin-top: 0;
     padding: 0;
-    gap: 10px;
+    gap: 14px;
     border: 0;
     background: transparent;
     box-shadow: none;
     text-align: center;
+    transform: translateY(18px);
   }
 
   body.mobile-layout-on .stat {
@@ -919,12 +928,13 @@ button:active {
     width: 56px;
     min-width: 56px;
     gap: 4px;
-    align-self: start;
+    align-self: center;
   }
 
   body.mobile-layout-on .previews .preview-block:first-child {
     grid-column: 1;
     grid-row: 2;
+    transform: translateY(-112px);
   }
 
   body.mobile-layout-on .previews .preview-block:last-child {
@@ -962,6 +972,7 @@ button:active {
     grid-column: 1 / -1;
     grid-row: 3;
     width: 100%;
+    margin-top: 10px;
   }
 
   body.mobile-layout-on .touch-rotate {
